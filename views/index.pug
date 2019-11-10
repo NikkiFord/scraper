@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  div
+    each article in articles
+      .card.m-2(style="width: 18rem; display: inline-block")
+        .card-body
+          h5.card-title= article.title
+          p.card-text= article.summary
+          a.btn.btn-primary.mr-2(href= article.url) Read More
+          a.card-link(href=`comments/${encodeURIComponent(article.title)}` ) #{comments[article.title] ? comments[article.title].length : 0} comments

@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= articleTitle
+  hr
+  h3 Comments
+  each comment in comments
+    .row
+      .col-md-6
+        .card.m-2
+          .card-body
+            p.card-text= comment.body
+            small.font-italic posted by #{comment.name}
+  hr
+  h4 Add Comment
+  form(method="post", action=`/new-comment/${encodeURIComponent(articleTitle)}`)
+    .form-group
+      label(for="author") Name
+      input#author.form-control(type="text" placeholder="Your Name", name="author")
+    .form-group
+      label(for="commentBody") Comment
+      textarea#commentBody.form-control.w-100(name="commentBody", style="height: 100px;")
+    button.btn.btn-primary(type="submit") Submit
